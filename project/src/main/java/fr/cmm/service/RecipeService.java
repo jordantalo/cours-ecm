@@ -36,7 +36,15 @@ public class RecipeService {
     }
 
     public long countByQuery(PageQuery query) {
-        return recipeCollection.count();
+        String mongoQuery = "{}";
+        String[] params = {};
+
+        if (query.getTag() != null && !"".equals(query.getTag())) {
+            mongoQuery = "{tags: #}";
+            params = new String[] {query.getTag()};
+        }
+
+        return recipeCollection.count(mongoQuery, params);
     }
 
     public Iterator<Recipe> findRandom(int count) {
@@ -44,6 +52,11 @@ public class RecipeService {
     }
 
     public Recipe findById(String id) {
+        try{ObjectId myobject = new ObjectId(id);
+        }catch(IllegalArgumentException myexception)
+        {
+            return null;
+        }
         return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class);
     }
 

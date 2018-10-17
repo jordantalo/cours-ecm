@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fragments" tagdir="/WEB-INF/tags/fragments" %>
 
+<%--@elvariable id="searchForm" type="fr.cmm.controller.form.SearchForm"--%>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -25,7 +27,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="tag">Tag</label>
-                <input type="text" data-role="tags" data-service-url="/tags.json" data-limit="1" class="form-control" id="tag" placeholder="Tag" name="tag" style="width: 200px;">
+                <input type="text" data-role="tags" data-service-url="/tags.json" data-limit="1" class="form-control" id="tag" placeholder="Tag" name="tag" style="width: 200px;" value="${searchForm.tag}">
             </div>
             <button type="submit" class="btn btn-default">Rechercher</button>
         </form>

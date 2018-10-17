@@ -17,7 +17,11 @@ public class PageQuery {
     }
 
     public void setIndex(int index) {
-        this.index = index;
+        if (index < 0) {
+               this.index = 0;
+        } else {
+            this.index = index;
+        }
     }
 
     public int getSize() {
